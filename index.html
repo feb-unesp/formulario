@@ -327,40 +327,26 @@
 
 
 
-<script>
-  document.getElementById('formulario').addEventListener('submit', function(event) {
+	document.getElementById('formulario').addEventListener('submit', function(event) {
     event.preventDefault(); // Previne o envio padrão do formulário
 
-    // Obtendo os dados do formulário
-    var dados = new FormData(document.getElementById('formulario'));
-    var formData = new URLSearchParams();
+    var formData = new FormData(document.getElementById('formulario'));
 
-    // Convertendo os dados do FormData para URLSearchParams (chave-valor)
-    dados.forEach(function(value, key) {
-      formData.append(key, value);
-    });
+    fetch("https://script.google.com/macros/s/AKfycbwTcAPTnudyja38rOhF_AF9ERqM2dVx2DcZyb-bHjV3oNTdrTq5Yo1Z2FsryHPYCI8N0A/exec", {
+    method: "POST",
+    body: JSON.stringify(dados),
+    headers: { "Content-Type": "application/json" }
+	})
+	.then(response => response.text()) // Primeiro, pegamos a resposta como texto
+	.then(text => {
+		console.log("Resposta do servidor:", text); // Exibe a resposta no console
+		return JSON.parse(text); // Tenta converter em JSON
+	})
+	.then(data => console.log("Dados processados:", data)) // Se deu certo, mostra os dados
+	.catch(error => console.error("Erro:", error)); // Se der erro, mostra no console
 
-    // Fazendo a requisição com fetch
-    fetch('https://script.google.com/macros/s/AKfycbwGcli4OhnyXanoC0QJznYVqdJwM95ZP2XkqZVyx4Yw4U0Ji-rWA47TpROGaafOQpaJtA/exec', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded', // Tipo de conteúdo
-      },
-      body: formData.toString(), // Envia os dados como query string
-      mode: 'no-cors' // Usando no-cors para depuração
-    })
-    .then(function(response) {
-      // Isso garante que a resposta seja tratada corretamente
-      return response.json(); // Verifica se a resposta é válida
-    })
-    .then(function(data) {
-      console.log('Resposta do servidor:', data);
-    })
-    .catch(function(error) {
-      console.error('Erro:', error); // Aqui você captura qualquer erro
-    });
-  });
-</script>
+	});
+
 
 
 
