@@ -329,30 +329,32 @@
 
 
 	<script>
-			document.getElementById('formulario').addEventListener('submit', function(event) {
-				event.preventDefault(); // Previne o envio padrão do formulário
+	document.getElementById('formulario').addEventListener('submit', function(event) {
+		event.preventDefault(); // Previne o envio padrão do formulário
 
-				var formData = new FormData(document.getElementById('formulario'));
-				var dados = {};
+		var formData = new FormData(document.getElementById('formulario'));
+		var dados = {};
+		
+		formData.forEach((value, key) => {
+			dados[key] = value;
+		});
 
-				formData.forEach((value, key) => {
-					dados[key] = value;
-				});
-
-				fetch("https://script.google.com/macros/s/AKfycbwTcAPTnudyja38rOhF_AF9ERqM2dVx2DcZyb-bHjV3oNTdrTq5Yo1Z2FsryHPYCI8N0A/exec", {
-					method: "POST",
-					body: JSON.stringify(dados),
-					headers: { "Content-Type": "application/json" }
-				})
-				.then(response => response.text()) // Pegamos a resposta como texto
-				.then(text => {
-					console.log("Resposta do servidor:", text); // Exibe a resposta no console
-					return JSON.parse(text); // Tenta converter em JSON
-				})
-				.then(data => console.log("Dados processados:", data)) // Se deu certo, mostra os dados
-				.catch(error => console.error("Erro:", error)); // Se der erro, mostra no console
-			});
-		</script>
+		fetch("https://script.google.com/macros/s/AKfycbwTcAPTnudyja38rOhF_AF9ERqM2dVx2DcZyb-bHjV3oNTdrTq5Yo1Z2FsryHPYCI8N0A/exec", {
+			method: "POST",
+			body: JSON.stringify(dados),
+			headers: { "Content-Type": "application/json" }
+		})
+		.then(response => response.json()) // Converte a resposta para JSON
+		.then(data => {
+			console.log("Resposta do servidor:", data);
+			alert("Formulário enviado com sucesso!");
+		})
+		.catch(error => {
+			console.error("Erro:", error);
+			alert("Ocorreu um erro ao enviar o formulário.");
+		});
+	});
+	</script>
 
 
 
