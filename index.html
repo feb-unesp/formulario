@@ -373,6 +373,7 @@
 
 
 
+
     </div>
 
     <script>
@@ -428,28 +429,25 @@
 		
 		
 	    // Função para enviar o formulário	
-		<script>
-		  document.getElementById('formulario').addEventListener('submit', function(event) {
-			event.preventDefault(); // Evita o envio padrão do formulário
+		function enviarFormulario() {
+			const form = document.getElementById("formulario");
+			const formData = new FormData(form);
 
-			var formData = new FormData(document.getElementById('formulario'));
-			var url = "https://script.google.com/macros/s/AKfycbwzoxzhbMiVcWyKQpBHq3SpMEUhYtTrtcwxD3GBGoOhX8OQHTEV5nmn7tycv28062RmRw/exec"; // URL do Web App
-
-			fetch(url, {
-			  method: 'POST',
-			  body: formData
+			fetch("https://script.google.com/macros/s/AKfycbxW3UDISq4Bs1AhRpVo7eqpbcogjw7t4juB8MFmQv34vkmje-vwIvdgkUAJj4WxsI_00w/exec", {
+				method: "POST",
+				mode: "cors", // Permite requisições entre domínios
+				body: formData
 			})
-			.then(response => response.text()) // Converte a resposta para texto
+			.then(response => response.json())
 			.then(data => {
-			  console.log("Resposta do servidor:", data);
-			  alert("Dados enviados com sucesso!");
+				alert("Dados enviados com sucesso!");
+				form.reset();
 			})
 			.catch(error => {
-			  console.error('Erro ao enviar os dados:', error);
-			  alert("Erro ao enviar os dados. Verifique o console.");
+				console.error("Erro:", error);
+				alert("Erro ao enviar os dados!");
 			});
-		  });
-		</script>
+		}
 
 
 		
