@@ -324,38 +324,44 @@
 
 
 
-	 <script>
-		document.getElementById('formulario').addEventListener('submit', function(event) {
-		  event.preventDefault(); // Previne o envio padrão do formulário
 
-		  // Obtendo os dados do formulário
-		  var dados = new FormData(document.getElementById('formulario'));
-		  var formData = new URLSearchParams();
 
-		  // Convertendo os dados do FormData para URLSearchParams (chave-valor)
-		  dados.forEach(function(value, key) {
-			formData.append(key, value);
-		  });
+<script>
+  document.getElementById('formulario').addEventListener('submit', function(event) {
+    event.preventDefault(); // Previne o envio padrão do formulário
 
-		  // Fazendo a requisição com fetch
-		  fetch('https://script.google.com/macros/s/AKfycbxW3UDISq4Bs1AhRpVo7eqpbcogjw7t4juB8MFmQv34vkmje-vwIvdgkUAJj4WxsI_00w/exec', {
-			method: 'POST',
-			headers: {
-			  'Content-Type': 'application/x-www-form-urlencoded', // Tipo de conteúdo
-			},
-			body: formData.toString(), // Envia os dados como query string
-			mode: 'cors' // Habilita CORS para permitir requisições de outros domínios
-		  })
-		  .then(response => response.json()) // Resposta em JSON
-		  .then(data => {
-			// Tratar a resposta
-			alert('Resposta do servidor: ' + JSON.stringify(data));
-		  })
-		  .catch(error => {
-			console.error('Erro:', error);
-		  });
-		});
-	 </script>
+    // Obtendo os dados do formulário
+    var dados = new FormData(document.getElementById('formulario'));
+    var formData = new URLSearchParams();
+
+    // Convertendo os dados do FormData para URLSearchParams (chave-valor)
+    dados.forEach(function(value, key) {
+      formData.append(key, value);
+    });
+
+    // Fazendo a requisição com fetch
+    fetch('https://script.google.com/macros/s/AKfycbxW3UDISq4Bs1AhRpVo7eqpbcogjw7t4juB8MFmQv34vkmje-vwIvdgkUAJj4WxsI_00w/exec', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded', // Tipo de conteúdo
+      },
+      body: formData.toString(), // Envia os dados como query string
+      mode: 'cors' // Habilita CORS para permitir requisições de outros domínios
+    })
+    .then(response => response.text()) // Resposta como texto simples
+    .then(data => {
+      // Tratar a resposta
+      alert('Resposta do servidor: ' + data);
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+    });
+  });
+</script>
+
+
+
+
 
 
 
