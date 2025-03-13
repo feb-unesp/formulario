@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUXÍLIO FINANCEIRO A ESTUDANTE - 2025</title>
+
    
    
    
@@ -128,7 +128,7 @@
 
 
 
-<title>Termo de Responsabilidade</title>
+<title>Auxílio Financeiro a Estudante</title>
 <style>
     /* Estilo para o título principal */
     h1 {
@@ -207,6 +207,49 @@
     button:hover {
         background-color: #4cae4c; /* Muda a cor de fundo para um verde mais escuro */
     }
+	
+	
+
+
+
+/* Estilo para alinhar os campos na mesma linha */
+.form-group-row {
+    display: flex; /* Usa Flexbox para alinhar os itens */
+    gap: 10px; /* Espaçamento entre os campos */
+    align-items: flex-end; /* Alinha os campos na parte inferior */
+    margin-bottom: 20px; /* Espaçamento entre as linhas */
+}
+
+/* Estilo para os campos dentro da linha */
+.form-group-row .form-group {
+    margin-bottom: 0; /* Remove a margem inferior padrão */
+}
+
+/* Exemplo de tamanhos diferentes para os campos */
+.form-group-row .form-group:nth-child(1) {
+    flex: 2; /* Campo 1 ocupa 2 partes do espaço disponível */
+}
+
+.form-group-row .form-group:nth-child(2) {
+    flex: 1; /* Campo 2 ocupa 1 parte do espaço disponível */
+}
+
+.form-group-row .form-group:nth-child(3) {
+    flex: 1; /* Campo 3 ocupa 1 parte do espaço disponível */
+}
+
+.form-group-row .form-group:nth-child(4) {
+    flex: 3; /* Campo 4 ocupa 3 partes do espaço disponível */
+}
+
+.form-group-row .form-group:nth-child(5) {
+    flex: 1; /* Campo 5 ocupa 1 parte do espaço disponível */
+}
+	
+	
+	
+	
+	
 </style>
     </style>
 </head>
@@ -238,28 +281,22 @@
         </div>		
 			
 			<!-- Campos do formulário -->
-			<input type="hidden" id="data" name="data">
-			<script>
-				 document.addEventListener("DOMContentLoaded", function() {
-				const opcoes = { day: 'numeric', month: 'long', year: 'numeric' };
-				const dataAtual = new Date().toLocaleDateString('pt-BR', opcoes);
-				document.getElementById("data").value = dataAtual;
-				 });
-			</script>
-            <div class="form-group">
-                <label for="nomeCivil">NOME CIVIL</label>
-                <input type="text" id="nomeCivil" name="nomeCivil" placeholder="DIGITE O NOME COMPLETO SEM ABREVIAÇÕES" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
-            </div>
-            <div class="form-group">
-                <label for="nomeSocial">NOME SOCIAL</label>
-                <input type="text" id="nomeSocial" name="nomeSocial" placeholder="DIGITE O NOME SOCIAL COMPLETO SEM ABREVIAÇÕES CASO POSSUA" autocomplete="off" oninput="maiusculas(this); markAsFilled(this)">
-            </div>
+			<div class="form-group-row">
+				 <div class="form-group" style="flex: 1;">
+					<label for="nomeCivil">NOME CIVIL</label>
+					<input type="text" id="nomeCivil" name="nomeCivil" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+				</div>
+				<div class="form-group">
+					<label for="nomeSocial">NOME SOCIAL</label>
+					<input type="text" id="nomeSocial" name="nomeSocial" autocomplete="off" oninput="maiusculas(this); markAsFilled(this)">
+				</div>
+			</div>
 
 
+			<div class="form-group-row">
 			<div class="form-group">
 				<label for="dataNascimento">DATA DE NASCIMENTO</label>
-				<input type="text" id="dataNascimento" name="dataNascimento" required 
-					   placeholder="DD/MM/AAAA" maxlength="10" 
+				<input type="text" id="dataNascimento" name="dataNascimento" required maxlength="10" 
 					   oninput="aplicarMascaraData(this)" 
 					   onchange="markAsFilled(this); validarData(this)" 
 					   autocomplete="off">
@@ -267,90 +304,113 @@
 
 
 
-            <div class="form-group">
+            <div class="form-group" style="flex: 2;">
                 <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" placeholder="DIGITE O NÚMERO DO CPF" oninput="formatarCPF(this); markAsFilled(this)" maxlength="14" required autocomplete="off">
+                <input type="text" id="cpf" name="cpf" oninput="formatarCPF(this); markAsFilled(this)" maxlength="14" required autocomplete="off">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="flex: 2;">
                 <label for="rg">RG</label>
-                <input type="text" id="rg" name="rg" placeholder="DIGITE O NÚMERO DO RG" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <input type="text" id="rg" name="rg" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="flex: 3;">
                 <label for="grauAcademico">GRAU ACADÊMICO</label>
                 <select id="grauAcademico" name="grauAcademico" required onchange="markAsFilled(this)" autocomplete="off">
-                    <option value="">SELECIONE UMA OPÇÃO</option>
+                    <option value=""></option>
                     <option value="GRADUAÇÃO">GRADUAÇÃO</option>
                     <option value="PÓS-GRADUAÇÃO">PÓS-GRADUAÇÃO</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="curso">CURSO</label>
-                <select id="curso" name="curso" required onchange="markAsFilled(this)">
-                    <option value="">SELECIONE UMA OPÇÃO</option>
-                    <option value="ENGENHARIA CIVIL">ENGENHARIA CIVIL</option>
-                    <option value="ENGENHARIA ELÉTRICA">ENGENHARIA ELÉTRICA</option>
-                    <option value="ENGENHARIA MECÂNICA">ENGENHARIA MECÂNICA</option>
-                    <option value="ENGENHARIA DE PRODUÇÃO">ENGENHARIA DE PRODUÇÃO</option>
-                </select>
-            </div>
+			</div>
+			
+			<div class="form-group-row">
+				<div class="form-group" style="flex: 2;">
+					<label for="curso">CURSO</label>
+					<select id="curso" name="curso" required onchange="markAsFilled(this)">
+						<option value=""></option>
+						<option value="ENGENHARIA CIVIL">ENGENHARIA CIVIL</option>
+						<option value="ENGENHARIA ELÉTRICA">ENGENHARIA ELÉTRICA</option>
+						<option value="ENGENHARIA MECÂNICA">ENGENHARIA MECÂNICA</option>
+						<option value="ENGENHARIA DE PRODUÇÃO">ENGENHARIA DE PRODUÇÃO</option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+						<label for="celular">CELULAR</label>
+						<input type="text" id="celular" name="celular"  
+						oninput="markAsFilled(this)" maxlength="15" required autocomplete="off">
+					</div>
 
-			<div class="form-group">
-					<label for="celular">CELULAR</label>
-					<input type="text" id="celular" name="celular" placeholder="DIGITE O CÓDIGO E NúMERO DO CELULAR" 
-					oninput="markAsFilled(this)" maxlength="15" required autocomplete="off">
+					<script>
+					  // Função para aplicar a máscara no campo de celular
+					  document.getElementById("celular").addEventListener("input", function(event) {
+						let valor = event.target.value;
+
+						// Remove todos os caracteres não numéricos
+						valor = valor.replace(/\D/g, "");
+
+						// Aplica a máscara para celular
+						if (valor.length <= 10) {
+						  valor = valor.replace(/(\d{2})(\d{0,5})(\d{0,4})/, "($1) $2-$3");
+						} else {
+						  valor = valor.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+						}
+
+						event.target.value = valor;
+					  });
+				</script>
+
+				<div class="form-group" style="flex: 2;">
+					<label for="email">E-MAIL</label>
+					<input type="email" id="email" name="email"  autocomplete="off" oninput="maiusculas(this); markAsFilled(this)">
 				</div>
 
-				<script>
-				  // Função para aplicar a máscara no campo de celular
-				  document.getElementById("celular").addEventListener("input", function(event) {
-					let valor = event.target.value;
+				</div>
+			
+			<div class="form-group-row">
 
-					// Remove todos os caracteres não numéricos
-					valor = valor.replace(/\D/g, "");
 
-					// Aplica a máscara para celular
-					if (valor.length <= 10) {
-					  valor = valor.replace(/(\d{2})(\d{0,5})(\d{0,4})/, "($1) $2-$3");
-					} else {
-					  valor = valor.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-					}
+				
+				     <div class="form-group" style="flex: 2;">
+						<label for="cep">CEP</label>
+						<input type="text" id="cep" name="cep" maxlength="8" onblur="buscarCEP()"  oninput="maskCEP(this); markAsFilled(this)" required autocomplete="off">
+					</div>
 
-					event.target.value = valor;
-				  });
-			</script>
 
-            <div class="form-group">
-                <label for="email">E-MAIL</label>
-                <input type="email" id="email" name="email" placeholder="DIGITE O E-MAIL COMPLETO" autocomplete="off" oninput="maiusculas(this); markAsFilled(this)">
-            </div>
-            <div class="form-group">
-                <label for="cep">CEP</label>
-                <input type="text" id="cep" name="cep" maxlength="8" onblur="buscarCEP()" placeholder="DIGITE O CEP COMPLETO" oninput="maskCEP(this); markAsFilled(this)" required autocomplete="off">
-            </div>
-            <div class="form-group">
+            <div class="form-group" style="flex: 5;">
                 <label for="logradouro">LOGRADOURO</label>
-                <input type="text" id="logradouro" name="logradouro" placeholder="DIGITE O LOGRADOURO SEM ABREVIAÇÕES" oninput="this.value = this.value.toUpperCase();" onchange="this.value = this.value.toUpperCase();" required autocomplete="off">
+                <input type="text" id="logradouro" name="logradouro"  oninput="this.value = this.value.toUpperCase();" onchange="this.value = this.value.toUpperCase();" required autocomplete="off">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="flex: 1;">
                 <label for="numero">NÚMERO</label>
-                <input type="text" id="numero" name="numero" placeholder="DIGITE O NÚMERO DO LOGRADOURO" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <input type="text" id="numero" name="numero" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
-            <div class="form-group">
+
+			</div>
+			
+			
+			
+			<div class="form-group-row">
+			
+			<div class="form-group" style="flex: 1;">
                 <label for="complemento">COMPLEMENTO</label>
-                <input type="text" id="complemento" name="complemento" placeholder="DIGITE O COMPLEMENTO CASO POSSUA" autocomplete="off" oninput="maiusculas(this); markAsFilled(this)">
+                <input type="text" id="complemento" name="complemento"  autocomplete="off" oninput="maiusculas(this); markAsFilled(this)">
             </div>
-            <div class="form-group">
+			
+			
+			
+			
+           <div class="form-group" style="flex: 3;">
                 <label for="bairro">BAIRRO</label>
-                <input type="text" id="bairro" name="bairro" placeholder="DIGITE O NOME DO BAIRRO" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <input type="text" id="bairro" name="bairro"  oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
-            <div class="form-group">
+            <div class="form-group" style="flex: 2;">
                 <label for="cidade">CIDADE</label>
-                <input type="text" id="cidade" name="cidade" placeholder="DIGITE O NOME DA CIDADE" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <input type="text" id="cidade" name="cidade"  oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
-            <div class="form-group">
+           <div class="form-group" style="flex: 1;">
                 <label for="estado">ESTADO</label>
                 <select id="estado" name="estado" required onchange="markAsFilled(this)">
-                    <option value="">SELECIONE UM ESTADO</option>
+                    <option value=""></option>
                     <option value="SP">SP</option>
                     <option value="AC">AC</option>
                     <option value="AL">AL</option>
@@ -381,42 +441,38 @@
                     <option value="TO">TO</option>
                 </select>
             </div>
+			</div>
+			
+			
+			
+			<div class="form-group-row">
             <div class="form-group">
                 <label for="nomeBanco">NOME DO BANCO</label>
-                <input type="text" id="nomeBanco" name="nomeBanco" placeholder="DIGITE O NOME BANCO" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <input type="text" id="nomeBanco" name="nomeBanco"  oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="numAgencia">NÚMERO DA AGÊNCIA</label>
-                <input type="text" id="numAgencia" name="numAgencia" placeholder="DIGITE O NÚMERO DA AGÊNCIA" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <input type="text" id="numAgencia" name="numAgencia"  oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
             <div class="form-group">
-                <label for="numConta">NÚMERO DA CONTA CORRENTE OU POUPANÇA</label>
-                <input type="text" id="numConta" name="numConta" placeholder="DIGITE O NÚMERO DA CONTA DO ALUNO" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <label for="numConta">NÚMERO DA CONTA</label>
+                <input type="text" id="numConta" name="numConta"  oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
-            <div class="form-group">
+            </div>
+			
+			<div class="form-group-row">
+			 <div class="form-group" style="flex: 4;">
                 <label for="nomeEvento">NOME DO EVENTO</label>
-                <input type="text" id="nomeEvento" name="nomeEvento" placeholder="DIGITE O NOME DO EVENTO" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <input type="text" id="nomeEvento" name="nomeEvento"  oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
-            <div class="form-group">
-                <label for="inicio">DATA DE INÍCIO</label>
-                <input type="date" id="inicio" name="inicio" required onchange="markAsFilled(this)" autocomplete="off" min="">
-            </div>
-            <div class="form-group">
-                <label for="termino">DATA DE TÉRMINO</label>
-                <input type="date" id="termino" name="termino" required onchange="markAsFilled(this)" autocomplete="off" min="">
-            </div>
-            <div class="form-group">
-                <label for="prazo">PRAZO MÁXIMO PARA RECEBER O RECURSO</label>
-                <input type="date" id="prazo" name="prazo" required onchange="markAsFilled(this)" autocomplete="off" min="">
-            </div>
-            <div class="form-group">
+			  <div class="form-group" style="flex: 2;">
                 <label for="cidadeEvento">CIDADE DO EVENTO</label>
-                <input type="text" id="cidadeEvento" name="cidadeEvento" placeholder="DIGITE O NOME DA CIDADE DO EVENTO" oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
+                <input type="text" id="cidadeEvento" name="cidadeEvento"  oninput="maiusculas(this); markAsFilled(this)" required autocomplete="off">
             </div>
-            <div class="form-group">
-                <label for="estadoEvento">ESTADO DO EVENTO</label>
+            <div class="form-group" style="flex: 1;">
+                <label for="estadoEvento">ESTADO</label>
                 <select id="estadoEvento" name="estadoEvento" required onchange="markAsFilled(this)">
-                    <option value="">SELECIONE UM ESTADO</option>
+                    <option value=""></option>
                     <option value="SP">SP</option>
                     <option value="AC">AC</option>
                     <option value="AL">AL</option>
@@ -447,22 +503,50 @@
                     <option value="TO">TO</option>
                 </select>
             </div>
-            <div class="form-group">
+			</div>
+			
+			
+			
+			<div class="form-group-row">
+            <div class="form-group" style="flex: 1;">
+                <label for="inicio">DATA DE INÍCIO</label>
+                <input type="date" id="inicio" name="inicio" required onchange="markAsFilled(this)" autocomplete="off" min="">
+			</div>
+			<div class="form-group" style="flex: 1;">
+                <label for="termino">DATA DE TÉRMINO</label>
+                <input type="date" id="termino" name="termino" required onchange="markAsFilled(this)" autocomplete="off" min="">
+            </div>
+			<div class="form-group" style="flex: 1;">
+                <label for="prazo">PRAZO MÁXIMO PARA RECEBER O RECURSO</label>
+                <input type="date" id="prazo" name="prazo" required onchange="markAsFilled(this)" autocomplete="off" min="">
+            </div>
+			</div>
+			
+			
+			
+           <div class="form-group-row">
+            <div class="form-group" style="flex: 2;">
                 <label for="rgCnh">RG OU CNH</label>
                 <input type="file" id="rgCnh" name="rgCnh" accept="application/pdf" onchange="markAsFilled(this)" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="flex: 2;">
                 <label for="comprovante">COMPROVANTE DE RESIDÊNCIA</label>
                 <input type="file" id="comprovante" name="comprovante" accept="application/pdf" onchange="markAsFilled(this)" required>
             </div>
-            <div class="form-group">
+            </div>
+			
+			
+			<div class="form-group-row">
+			<div class="form-group" style="flex: 2;">
                 <label for="evento">COMPROVANTE DE REALIZAÇÃO DO EVENTO</label>
                 <input type="file" id="evento" name="evento" accept="application/pdf" onchange="markAsFilled(this)" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="flex: 2;">
                 <label for="cadin">CADIN</label>
                 <input type="file" id="cadin" name="cadin" accept="application/pdf" onchange="markAsFilled(this)" required>
             </div>
+			</div>
+			
             <button type="submit" class="form-button">Enviar</button>
         </form>
     </div>
@@ -474,7 +558,7 @@
 		
 		
 		
-const scriptURL = "https://script.google.com/macros/s/AKfycbxbrDRXzssJDXMie95MJ7KvmNmKejyDaVVcX87NP6PgKOlihctwJ6NUF9B84ng6Ljdptw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwMZvgc4PRvjCz6HQqjk6H3emx21w71tTgrG0Nrqv9jUQeuUmHbW2QboD8KB5ydnfcs/exec";
 const form = document.forms["contact-form"];
 
 // Função para formatar data para o padrão brasileiro (DD/MM/AAAA)
@@ -616,13 +700,13 @@ form.addEventListener("submit", async (e) => {
         }
 
         // Função para marcar o campo como preenchido (mudar a cor)
-        //function markAsFilled(input) {
-        //    if (input.value.trim() !== "") {
-        //        input.classList.add("filled");
-        //    } else {
-        //        input.classList.remove("filled");
-        //    }
-        //}
+        function markAsFilled(input) {
+            if (input.value.trim() !== "") {
+                input.classList.add("filled");
+            } else {
+                input.classList.remove("filled");
+            }
+        }
 
 
 
